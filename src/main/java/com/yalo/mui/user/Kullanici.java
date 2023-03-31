@@ -17,7 +17,7 @@ public class Kullanici {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String kullaniciAdi;
-
+    @Column(unique = true)
     private String email;
 
     private String password;

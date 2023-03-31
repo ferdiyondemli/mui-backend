@@ -29,7 +29,7 @@ public class KullaniciController {
         return kullaniciService.findById(kullaniciId);
     }
 
-    @PostMapping(value = "/{kullaniciId}")
+    @PostMapping(value = "/giris")
     public Kullanici getAll(@RequestBody   KullaniciGiris kullaniciGiris ) {
         return kullaniciService.findByGiris(kullaniciGiris);
     }

@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class KullaniciGiris {
 
-    private String kullaniciAdi;
+    private String email;
 
 
     private String password;

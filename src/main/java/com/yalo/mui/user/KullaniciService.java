@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.ReadOnlyBufferException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -20,8 +21,7 @@ public class KullaniciService {
 
     @Transactional
     public Kullanici  ekle(Kullanici kullanici) {
-        return  kullaniciRepo.save(kullanici);
-
+       return      kullaniciRepo.save(kullanici);
     }
     @Transactional(readOnly = true)
     public Kullanici findById(Long kullaniciId) {
@@ -31,7 +31,7 @@ public class KullaniciService {
 
     @Transactional(readOnly = true)
     public Kullanici findByGiris(KullaniciGiris kullaniciGiris) {
-        return   kullaniciRepo.findKullaniciByKullaniciAdiAndPassword(kullaniciGiris.getKullaniciAdi(),kullaniciGiris.getPassword());
+        return   kullaniciRepo.findKullaniciByEmailAndPassword(kullaniciGiris.getEmail(),kullaniciGiris.getPassword());
     }
 
 
