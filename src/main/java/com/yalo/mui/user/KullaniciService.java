@@ -31,10 +31,28 @@ public class KullaniciService {
 
     @Transactional(readOnly = true)
     public Kullanici findByGiris(KullaniciGiris kullaniciGiris) {
-        return   kullaniciRepo.findKullaniciByEmailAndPassword(kullaniciGiris.getEmail(),kullaniciGiris.getPassword());
+
+       Kullanici kullanici=kullaniciRepo.findKullaniciByEmailAndPassword(kullaniciGiris.getEmail(),kullaniciGiris.getPassword());
+     if(kullanici==null){
+         throw new RuntimeException("kullanıcı bulunamadı");
+     }   return kullanici;
     }
 
+    @Transactional
+    public Kullanici guncelle(KullaniciGuncelleDto kullaniciGuncelleDto) {
+
+      Kullanici kullanici1=   kullaniciRepo.findById(kullaniciGuncelleDto.getId()).orElse(null);
+      if(kullanici1.getPassword().equals(kullaniciGuncelleDto.getEskiPassword())){
+          kullanici1.setKullaniciAdi(kullaniciGuncelleDto.getKullaniciAdi());
+          kullanici1.setEmail(kullaniciGuncelleDto.getEmail());
+          if(!kullaniciGuncelleDto.getPassword().isEmpty()){
+              kullanici1.setPassword(kullaniciGuncelleDto.getPassword());
+          }
+          return kullanici1;
+      }else {
+           throw  new RuntimeException("uyumsuz password");
+      }
 
 
-
+    }
 }
