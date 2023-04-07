@@ -9,7 +9,8 @@ spring:
   application:
     name: yalo
   datasource:
-    url: jdbc:mysql://host.docker.internal:3306/testdb
+    url: jdbc:mysql://localhost:3306/testdb # local için
+  #  url: jdbc:mysql://muidb:3306/testdb # docker için
     username: yalo
     password: yalo
     driverClassName: com.mysql.jdbc.Driver
@@ -18,3 +19,4 @@ logging:
     sql: info
     root: info
     web: info
+

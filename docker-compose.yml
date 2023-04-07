@@ -3,7 +3,10 @@ version: "3.8"
 services:
   mysql_db:
     image: "mysql:8.0"
+    container_name: muidb
     restart: always
+    networks:
+      - muinet
     ports:
       - 3306:3306
     environment:
@@ -11,4 +14,10 @@ services:
       MYSQL_USER: yalo
       MYSQL_PASSWORD: yalo
       MYSQL_ROOT_PASSWORD: yalo
+
+networks:
+  muinet:
+    driver: bridge
+
+#docker-compose up -d
 

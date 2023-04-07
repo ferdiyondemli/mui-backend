@@ -1,6 +1,8 @@
 package com.yalo.mui.user;
 
 
+import com.yalo.mui.exceptions.UserNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +33,7 @@ public class KullaniciController {
     }
 
     @PutMapping(value = "/guncelle")
-    public KullaniciResponseDto guncelle(@RequestBody KullaniciGuncelleDto kullaniciGuncelleDto) {
+    public KullaniciResponseDto guncelle(@RequestBody @Valid KullaniciGuncelleDto kullaniciGuncelleDto) {
         return new KullaniciResponseDto(kullaniciService.guncelle(kullaniciGuncelleDto));
     }
 
@@ -42,7 +44,7 @@ public class KullaniciController {
     }
 
     @PostMapping(value = "/giris")
-    public KullaniciResponseDto getAll(@RequestBody KullaniciGiris kullaniciGiris) {
+    public KullaniciResponseDto getAll(@RequestBody @Valid KullaniciGiris kullaniciGiris) throws UserNotFoundException {
         return new KullaniciResponseDto(kullaniciService.findByGiris(kullaniciGiris));
     }
 
