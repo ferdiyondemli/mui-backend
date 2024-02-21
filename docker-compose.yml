@@ -14,10 +14,13 @@ services:
       MYSQL_USER: yalo
       MYSQL_PASSWORD: yalo
       MYSQL_ROOT_PASSWORD: yalo
+    volumes:
+      - mysql_data:/var/lib/mysql
 
 networks:
   muinet:
     driver: bridge
 
-#docker-compose up -d
-
+volumes:
+  mysql_data:
+    driver: local
